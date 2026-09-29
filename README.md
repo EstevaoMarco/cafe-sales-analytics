@@ -4,7 +4,7 @@ Projeto de portfólio que acompanha 10.000 transações de uma cafeteria: invest
 e limpeza em Python, carga e validação no PostgreSQL e análise interativa no Power BI.
 O foco é explicar as decisões de tratamento e seus efeitos nos indicadores.
 
-![Dashboard Cafe Sales](dashboard.png)
+![Dashboard Cafe Sales](docs/images/dashboard.png)
 
 ## Perguntas da análise
 
@@ -92,15 +92,15 @@ preferências de pagamento, local e produto.
 
 | Arquivo | Conteúdo |
 |---|---|
-| `Limpeza_Estruturação.ipynb` | Investigação, limpeza, validações e carga |
-| `1.dirty_cafe_sales.csv` | Entrada original, com nome local usado no notebook |
-| `cafe_sales_db.sql` | Criação da tabela `public.vendas` |
-| `01_criacao_tabela.sql` | Apesar do nome histórico, contém análise por produto de junho e outubro |
-| `Consultas.sql` | Agregações por pagamento, local e produto |
-| `validacao_carga.sql` | Conferência de contagens, nulos e indicadores |
-| `Dashboard.pbix` | Relatório Power BI com dados importados |
-| `dashboard.png` | Visão geral do dashboard sem filtro de datas |
-| `tooltip-produto.png` | Detalhamento de Cake na tooltip de produtos |
+| `notebooks/Limpeza_Estruturação.ipynb` | Investigação, limpeza, validações e carga |
+| `data/raw/1.dirty_cafe_sales.csv` | Entrada original, com nome local usado no notebook |
+| `sql/01_criacao_tabela.sql` | Criação da tabela `public.vendas` |
+| `sql/04_comparacao_mensal.sql` | Comparação por produto entre junho e outubro |
+| `sql/03_consultas.sql` | Agregações por pagamento, local e produto |
+| `sql/02_validacao_carga.sql` | Conferência de contagens, nulos e indicadores |
+| `powerbi/Dashboard.pbix` | Relatório Power BI com dados importados |
+| `docs/images/dashboard.png` | Visão geral do dashboard sem filtro de datas |
+| `docs/images/tooltip-produto.png` | Detalhamento de Cake na tooltip de produtos |
 | `requirements.txt` | Versões de bibliotecas observadas no ambiente do projeto |
 
 As capturas foram fornecidas pelo autor para apresentar o dashboard e a tooltip.
@@ -117,16 +117,16 @@ Logo e ilustração foram gerados com auxílio de IA.
    ```
 
 3. Abra o notebook no VS Code com a extensão Jupyter e selecione o Python da `.venv`.
-   Caso obtenha o CSV diretamente do Kaggle, salve-o nesta pasta com o nome
-   `1.dirty_cafe_sales.csv`, esperado pela célula de leitura.
-4. No pgAdmin, crie o banco `cafe_sales`. Conectado a ele, execute `cafe_sales_db.sql`
+   Caso obtenha o CSV diretamente do Kaggle, salve-o no caminho
+   `data/raw/1.dirty_cafe_sales.csv`, esperado pela célula de leitura.
+4. No pgAdmin, crie o banco `cafe_sales`. Conectado a ele, execute `sql/01_criacao_tabela.sql`
    uma única vez para criar a tabela. A tabela aceita `NULL` em números e datas.
 5. Execute o notebook em ordem. Na conexão, ajuste host, porta, usuário e banco para
    sua instalação. A senha é informada por `getpass`; não a escreva no arquivo.
 6. Execute a carga com a tabela vazia. O notebook interrompe uma nova carga quando
    ela já contém registros; não é necessário recarregar os dados para fazer consultas.
-7. Rode `validacao_carga.sql` e compare com os controles documentados acima.
-8. Abra `Dashboard.pbix`. Para atualizar, configure sua própria conexão PostgreSQL em
+7. Rode `sql/02_validacao_carga.sql` e compare com os controles documentados acima.
+8. Abra `powerbi/Dashboard.pbix`. Para atualizar, configure sua própria conexão PostgreSQL em
    **Configurações da fonte de dados**, apontando para `cafe_sales`, e informe suas credenciais.
    O relatório usa Importação; o arquivo contém uma cópia dos dados tratados.
 
@@ -139,7 +139,7 @@ O relatório combina cartões, receita mensal, ranking de produtos, local de con
 pedidos por pagamento, filtro de datas e botão para limpar esse filtro. Páginas de
 tooltip detalham o ponto selecionado, com títulos dinâmicos e indicadores contextualizados.
 
-![Tooltip de Cake com unidades por mês, pedidos e unidades vendidas](tooltip-produto.png)
+![Tooltip de Cake com unidades por mês, pedidos e unidades vendidas](docs/images/tooltip-produto.png)
 
 Ao passar o mouse sobre um produto, o relatório mostra sua evolução mensal e os
 indicadores filtrados para esse item. A imagem apresenta Cake, com 1.139 pedidos e
