@@ -1,0 +1,31 @@
+# Ambientes e arquivos locais
+.venv/
+venv/
+__pycache__/
+.ipynb_checkpoints/
+.env
+.env.*
+!.env.example
+*.log
+Thumbs.db
+desktop.ini
+
+# Credenciais e recuperação local
+Senha_Postgresql.ipynb
+pgpass.conf
+.pgpass
+pg_hba.conf
+pg_hba.conf.*
+
+# Cache de projetos Power BI
+.pbi/
+*.pbix.autosave
+
+# Materiais de publicação e imagem não usada no relatório
+docs/PUBLICACAO.md
+docs/LINKEDIN.md
+cafeteria-dashboard.png
+
+# Materiais locais na raiz
+/PUBLICACAO.md
+/LINKEDIN.md
